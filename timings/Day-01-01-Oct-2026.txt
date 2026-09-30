@@ -2,4 +2,4 @@
 30 mins- Git code
 an Hour - Communication skills
 2 hrs - linux commands
-1 hrs - Ip networking
+1 hrs - Ip address/networking
