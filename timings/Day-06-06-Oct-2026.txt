@@ -1,0 +1,4 @@
+20 mins - Communication
+an Hour - Git code
+an hour - AWS fundamentals
+an hour - Basic troubleshooting/scripting
