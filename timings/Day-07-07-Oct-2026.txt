@@ -1,0 +1,4 @@
+30mins  : Communication
+an hour : AWS services
+an hour : Git Push/coding
+an hour : Coding practice/ shell scripting 
