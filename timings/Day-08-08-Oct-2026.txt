@@ -1,0 +1,3 @@
+30 mins - Git code
+2 hours - VPC, Subnet, EC2, NAT gateway, internet gateway. 
+an hour - Linux practice
