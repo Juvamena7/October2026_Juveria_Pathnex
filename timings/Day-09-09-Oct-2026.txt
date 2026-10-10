@@ -1,0 +1,3 @@
+an hour- AWS services(VPC, route tables, IGW, Nat gatwway)
+an hour- Linux
+an hour- Git code
