@@ -1,0 +1,4 @@
+an hour- AWS(Ec2, EBS, volumes, Git)
+an hour - Git code push
+30 mins - communication skills
+30 mins - Introduction practice
