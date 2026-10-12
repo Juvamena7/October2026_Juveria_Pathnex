@@ -1,0 +1,4 @@
+an hour- Git push /Yaml script/shell script
+20 mins - Introduction Video
+an hour - Docker/containers/port mapping
+an hour - Kubernetes architecture
