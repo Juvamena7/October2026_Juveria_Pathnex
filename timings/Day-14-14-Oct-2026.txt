@@ -1,0 +1,4 @@
+30 mins - Introduction Video/communication skills
+an hour - Git code push/mini project in task
+2 hours - kubernetes
+an hour - Class preparation/kubernetes upgrades
