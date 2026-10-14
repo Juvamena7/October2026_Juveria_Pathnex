@@ -1,0 +1,4 @@
+30 mins- Introduction Video/communication
+an hour: Git code/ jenkins file
+an hour: Kubernetes cluster
+an hour: terraform files/aws configure/kubeconfig 
