@@ -1,0 +1,5 @@
+an hour: Git code push
+an hour: kubernetes cluster using terraform
+an hour: troubleshooting with pods /nodes
+30 mins: Introduction/communication
+
