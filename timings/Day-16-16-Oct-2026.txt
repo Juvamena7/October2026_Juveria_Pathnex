@@ -1,0 +1,5 @@
+an Hour : Git code
+an Hour: Kubernetes
+an Hour: Helm package manager
+30 mins: Introduction/communication
+
