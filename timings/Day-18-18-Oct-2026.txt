@@ -1,0 +1,3 @@
+40 mins: Git code
+an Hour: Kubernetes practical
+an Hour: Terraform
