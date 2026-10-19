@@ -1,0 +1,4 @@
+an hour: kubernetes
+an hour: helm
+30 mins: git code
+30 mins: Argocd
