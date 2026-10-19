@@ -1,0 +1,3 @@
+an hour: git code
+an hour: terraform
+45 mins: kubernetes
