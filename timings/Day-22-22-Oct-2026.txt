@@ -1,0 +1,5 @@
+30 mins: Git code
+an hour: Ansible
+an hour: monitoring basics
+an hour: kubernetes troubleshooting
+
