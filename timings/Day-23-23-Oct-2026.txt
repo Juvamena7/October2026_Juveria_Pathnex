@@ -1,0 +1,3 @@
+2 hours- Monitoring practical with Grafana and Prometheus
+an hour - Git code/understanding code
+an hour- ELK practical
