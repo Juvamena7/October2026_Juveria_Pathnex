@@ -1,0 +1,4 @@
+an hour- Git code 
+an hour - ansible
+an hour- kubernetes/eks-tf cluster
+
