@@ -1,0 +1,5 @@
+an hour: Monitoring pratical
+an hour: git code / yaml file practice
+an hour: Kafka practice
+an hour: kubernetes revision
+
