@@ -1,0 +1,4 @@
+an hour : Terraform practice
+an hour : Git code/ mini project code
+an hour: SRE revision
+45 mins: Linux commands practice
