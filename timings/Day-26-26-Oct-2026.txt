@@ -1,0 +1,4 @@
+an hour : Kubernetes questions
+an hour: terraform revision
+30 mins: Git code
+an hour: Kafka
