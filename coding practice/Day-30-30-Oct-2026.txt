@@ -1,0 +1,162 @@
+# Day 30 - Speed test while doing tasks
+
+# Ansible- To create a user, add SSH key and set shell to /bin/bash
+
+---
+- name: Create a User
+  hosts: all
+  become: yes
+
+  tasks: 
+    - name: Create user and set shell
+      User: 
+        name: Pathnex-admin
+        shell: /bin/bash
+        state: present
+    - name: Add SSH public key
+      authorized_key:
+        user: Pathnex-admin
+        key: "{{ lookup('file', 'pathnex-admin.pub') }}"
+
+## Terraform- Create EC2 with tags
+
+resource "aws_instance" "Pathnex-EC2" {
+  ami            = "ami-2SHDK334JFHF"
+  instance_type  = "c5.xlarge"
+
+  tags = {
+    Name = "Pathnex-EC2"
+  }
+}
+
+## Kubernetes- Deployment with 2 Replicas, and expose via ClusterIP
+
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: Pathnex-Deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pathnex-app
+  template:
+    metadata:
+      labels:
+        app: pathnex-app
+    spec:
+      - containers:
+          name: nginx
+          image: nginx-latest
+          ports:
+            - containersPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ClusterIP Service
+spec:
+  type: ClusterIP
+  selectors:
+    app: pathnex-app
+  ports:
+    - port: 80
+      targetPort: 80
+      
+  
+# Shell:
+
+#!/bin/bash
+
+echo "IP address of the server is: "
+hostname -I | awk '{print $1}'
+
+echo "Disk usage"
+df -h 
+
+echo "Memory parameters are: "
+free -m
+
+# Jenkins Pipeline
+
+pipeline {
+    agent any 
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+        TEAM = "DevOps"
+        ENV = "prod"
+        PROJECT = "Pathnex-Training" 
+    }
+    stages {
+        stage('Infrastructure') {
+            steps {
+                echo "Infrastructure created for ${PROJECT}"
+                sh 'terraform init'
+                sh 'terraform apply'
+            }
+        }
+        stage('Deployment') {
+            steps {
+                echo "Deployment of ${PROJECT} for ${INSTITUTE_NAME}'"
+                sh 'ansible-playbook -i inventoryfile CreateUservSSH.yml'
+                sh 'kubectl apply -f pathnex-deployment.yaml'
+            }
+        }
+        stage('Monitoring') {
+            echo 'Running monitoring checks for system'
+            sh 'bash systems_check.sh'
+        }
+    }
+    post {
+        success {
+            echo '${PROJECT} deployed successfully in ${ENV}'
+        }
+        failure {
+            echo 'Pipeline failed. Check the console logs'
+        }
+        always {
+            echo 'Pipeline execution completed for ${INSTITUTE_NAME}'
+        }
+    }
+}
+
+GitLab CI - same pipeline with GitLab CI
+
+stages:
+  - infrastructure
+  - deployment
+  - monitoring
+
+variables:
+  INSTITUTE_NAME: "Pathnex"
+  TEAM: "DevOps"
+  ENV: "prod"
+  PROJECT: "Pathnex-Training"
+
+infrastructure:
+  stage: infrastructure
+  script:
+    - echo "Creating infrastructure for ${PROJECT}"
+    - terraform init
+    - terraform apply
+
+deployment:
+  stage: deployment
+  script:
+    - echo "Deploying application for ${INSTITUTE_NAME}"
+    - ansible-playbook -i inventoryfile CreateUserVSSH.yml
+    - kubectl apply -f pathnex-deployment.yaml
+
+monitoring:
+  stage: monitoring
+  script:
+    - echo "Running script for system check"
+    - bash system_check.sh
+    - echo "ENVIRONMENT: ${ENV}"
+
+after_script:
+  - echo "Pipeline completed for ${PROJECT}"
+
+      
+
