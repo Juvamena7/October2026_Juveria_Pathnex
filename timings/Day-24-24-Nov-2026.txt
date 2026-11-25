@@ -1,0 +1,3 @@
+4 hours: Docker preparation/ K8s 
+IRSA/STS/OIDC/EKSPODIdentity
+1 hour: Git code
