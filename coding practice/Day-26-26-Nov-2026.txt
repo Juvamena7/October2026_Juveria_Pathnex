@@ -1,0 +1,94 @@
+# Day 26 — Security Best Practices
+# Ansible- Implementing SSH Key based Authentication
+- name: Implement SSH Key Authentication
+  hosts: all
+  become: yes
+  tasks:
+    - name: Generate SSH key pair
+      command: ssh-keygen -t rsa -b 2048 -f /home/user/.ssh/id_rsa -N ""
+    - name: Add SSH public key to authorized_keys
+      authorized_key:
+        user: user
+        state: present
+        key: "{{ lookup('file', '/home/user/.ssh/id_rsa.pub') }}"
+
+# Teraform - Enabling VPC flow logs for security
+
+resource "aws_vpc_flow_logs" "pathnex_flow_log" {
+  log_group_name  = "pathnex-flow-logs"
+  vpc_id          = aws_vpc.pathnex_vpc.id
+  traffic_type    = "ALL"
+  log_destination_type = "cloud-watch-logs"
+  }
+  resource "aws_cloudwatch_log_group" "pathnex_flow_logs_group" {
+    name = "pathnex-flow-logs"
+  }
+# Kubernetes- Network policies for security 
+
+apiversion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadat: 
+  name: pathnex-web-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: pathnex-web-app
+  policyTypes:
+    - ingress
+    - egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: pathnex-api
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: pathnex-db
+
+# jenkinsfile- Secure the Pipeline with Secrets
+
+pipeline {
+   agent any
+   environment {
+       AWS_ACCESS_KEY_ID = credentials('aws_access_key')
+       AWS_SECRET_ACCESS_KEY = credentials('aws_secret_key')
+  }  
+  stages {
+      stage('Build') {
+          steps {
+              docker.build('pathnex-web-app')
+          }
+      }
+      stage('Deploy') {
+          steps {
+             sh 'aws ec2 run-instances --image-id ami-9ssdhe334 --count 1 --instance_type c5x.large'
+          }
+      }
+  }   
+}
+# GitLab CI/CD- Use GitLab Secrets for Secure Deployment
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker build -t pathnex-web-app .
+
+deploy:
+  stage: deploy
+  script:
+    - aws ec2 run-instances --image-id ami-0D3934h --count 1  --instance_type c5.xlarge --access-key $AWS_ACCESS_KEY --secret-key $AWS_SECRET_KEY
+
+# Docker
+
+#Docker logs $ Inspect
+
+docker logs pathnex-nginx
+docker inspect pathnex-nginx
+
+

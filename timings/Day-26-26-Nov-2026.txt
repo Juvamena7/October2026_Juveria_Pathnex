@@ -1,0 +1,3 @@
+
+3 hours: Git code and L2 preparation
+3 hours: revision of Linux, git , K8s, docker, SRE
