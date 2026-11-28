@@ -1,0 +1,4 @@
+an hour : kubernetes services
+an hour : Git code /debug day practice
+45 mins: Interview questions practice
+an hour: Helm charts revision
