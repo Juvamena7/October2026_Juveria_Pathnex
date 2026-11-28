@@ -1,0 +1,3 @@
+4 hours: L2 preparation
+1 hour: Git code
+
