@@ -1,0 +1,4 @@
+1 hour: Git code push
+
+4 hours: Preparation for L2
+Kubernetes , Docker, Terraform
